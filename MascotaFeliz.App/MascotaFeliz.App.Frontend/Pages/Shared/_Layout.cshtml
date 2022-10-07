@@ -1,60 +1,68 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MascotaFaeliz.App.Frontend</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <title>@ViewData["Title"] - Mascota Feliz</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/formularios.css" />
+    <link rel="stylesheet" href="~/css/estilos.css">
 </head>
+
 <body>
     <header>
-       <nav class="navbar  bg-black navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
-            <div class="container">
-                <img class="me-3" src="../img/Logomini.png" width="80px" heigth="80px">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">MASCOTA FELIZ</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-warning" asp-area="" asp-page="/Duenos/ListaDuenos">Dueño</a>
-                            
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-warning" asp-area="" asp-page="/Mascotas/ListaMascotas">Mascota</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-warning" asp-area="" asp-page="/Veterinarios/ListaVeterinarios">Veterinario</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Login">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
+ <nav class="navbar  bg-black navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+    <div class="container">
+        <img class="me-3" src="../img/Logomini.png" width="80px" heigth="80px">
+        <a class="navbar-brand" asp-area="" asp-page="/Index">MASCOTA FELIZ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item"><a class="nav-link text-light" asp-area="" asp-page="/Index">Inicio</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-warning">Dueño</a>
+                   <ul>
+                       <li><a class="text-warning" href="/Duenos/AgregarDueno">Agregar Dueño</a></li>
+                       <li><a class="text-warning" href="/Duenos/ListarDuenos">Listar Dueño</a></li>
+                   </ul>                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" asp-area="">Mascota</a>
+				   <ul>
+                       <li><a class="text-warning" href="/Mascotas/AgregarMascotas">Agregar Mascota</a></li>
+                       <li><a  class="text-warning" href="/Mascotas/ListarMascotas">Listar Mascotas</a></li>
+                   </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning" asp-area="">Veterinario</a>
+                  <ul>
+                      <li><a class="nav-link text-warning" href="/Veterinarios/AgregarVeterinario">Agregar Veterinario</a></li>
+                      <li><a  class="nav-link text-warning" href="/Veterinarios/ListarVeterinarios">Listar Veterinarios</a></li>
+                  </ul>
+				</li>
+				<li class="nav-item">
+                    <a class="nav-link text-warning" asp-area="" asp-page="/VisitasPyP/EditarVisitasPyP">Visita</a>
+				</li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-area="" asp-page="/Login">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     </header>
     <div class="container">
-                <main role="main" class="pb-3">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <!-- <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - MascotaFaeliz.App.Frontend - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer> -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
@@ -65,4 +73,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+<footer>hola</footer>
 </html>

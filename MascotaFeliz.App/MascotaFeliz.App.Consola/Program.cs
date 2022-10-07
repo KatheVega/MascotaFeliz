@@ -32,18 +32,18 @@ namespace MascotaFeliz.App.Consola
             //AddMascota();
             //AsignarVeterinario();
             //AsignarDueno();
-            AsignarHistoria();
+            //AsignarHistoria();
             
             //ListarMascotas();
             //ListarHistorias();
             
 
             //AddHistoria();
-            //AddVisitaPyP();
+            //AsignarVisitaPyP(2);
             //ListarMascotas();
             //DeleteMascota();
             //DeleteDueno();
-            //DeleteHistoria();
+
         }
 
         private static void AddDueno()
@@ -93,52 +93,33 @@ namespace MascotaFeliz.App.Consola
         {
             var historia = new Historia
             {
-                FechaInicial = new DateTime(2020, 01, 04)
+                FechaInicial = new DateTime(2020, 01, 03)
 
             };
             _repoHistoria.AddHistoria(historia);
             Console.WriteLine("historia agregada");
         }
-        
-        private static void AddVisitaPyP()
-        {
-            var visitaPyP = new VisitaPyP
-            {
-                FechaVisita = new DateTime (2015,02,03),
-                Temperatura = 36,
-                Peso = 12,
-                FrecuenciaRespiratoria = 26,
-                FrecuenciaCardiaca = 110,
-                EstadoAnimo = "Normal",
-                IdVeterinario = 456789,
-                Recomendaciones = "darle amor."
-            };
-            _repoVisitaPyP.AddVisitaPyP(visitaPyP);
-            Console.WriteLine("visita agregada");
-        }
 
-
-
-        private static void AsignarVisitaPyP(int idHistoria)
+       /* private static void AsignarVisitaPyP(int idHistoria)
         {
             var historia = _repoHistoria.GetHistoria(idHistoria);
             if (historia != null)
             {
                 if (historia.VisitasPyP != null)
                 {
-                    historia.VisitasPyP.Add(new VisitaPyP { FechaVisita = new DateTime(1000, 09, 21), Temperatura = 38.0F, Peso = 30.0F, FrecuenciaRespiratoria = 71.0F, FrecuenciaCardiaca = 71.0F, EstadoAnimo = "Muy cansón", //IdVeterinario = "123", 
+                    historia.VisitasPyP.Add(new VisitaPyP { FechaVisita = new DateTime(1000, 09, 21), Temperatura = 38.0F, Peso = 30.0F, FrecuenciaRespiratoria = 71.0F, FrecuenciaCardiaca = 71.0F, EstadoAnimo = "Muy cansón", //CedulaVeterinario = "123", 
                     Recomendaciones = "Dieta extrema"});
                 }
                 else
                 {
                     historia.VisitasPyP = new List<VisitaPyP>{
-                        new VisitaPyP{FechaVisita = new DateTime(2000, 01, 01), Temperatura = 38.0F, Peso = 30.0F, FrecuenciaRespiratoria = 71.0F, FrecuenciaCardiaca = 71.0F, EstadoAnimo = "Muy cansón", //IdVeterinario = "123", 
+                        new VisitaPyP{FechaVisita = new DateTime(2000, 01, 01), Temperatura = 38.0F, Peso = 30.0F, FrecuenciaRespiratoria = 71.0F, FrecuenciaCardiaca = 71.0F, EstadoAnimo = "Muy cansón", //CedulaVeterinario = "123", 
                         Recomendaciones = "Dieta extrema" }
                     };
                 }
                 _repoHistoria.UpdateHistoria(historia);
             }
-        }
+        }*/
 
         private static void BuscarDueno(int idDueno)
         {
@@ -209,7 +190,7 @@ namespace MascotaFeliz.App.Consola
 
         private static void DeleteMascota()
         {
-            _repoMascota.DeleteMascota(5019);
+            _repoMascota.DeleteMascota(1);
             Console.WriteLine("mascota borrada");
         }
 
@@ -225,23 +206,24 @@ namespace MascotaFeliz.App.Consola
 
         private static void AsignarDueno()
         {
-            var dueno = _repoMascota.AsignarDueno(6020, 2003);
+            var dueno = _repoMascota.AsignarDueno(5018, 2011);
             Console.WriteLine(dueno.Nombres + " " + dueno.Apellidos);
         }
 
         private static void AsignarVeterinario()
         {
-            var veterinario = _repoMascota.AsignarVeterinario(6020, 2015);
+            var veterinario = _repoMascota.AsignarVeterinario(5018, 6);
             Console.WriteLine(veterinario.Nombres + " " + veterinario.Apellidos);
         }
 
 
         private static void AsignarHistoria()
         {
-            var historia = _repoMascota.AsignarHistoria(1,1);
-            Console.WriteLine("HIstoria ");
+            var historia = _repoMascota.AsignarHistoria(5018,4);
+            Console.WriteLine("HIstoria agregada");
         }
-
+//Milumascota//
 
     }
 }
+    

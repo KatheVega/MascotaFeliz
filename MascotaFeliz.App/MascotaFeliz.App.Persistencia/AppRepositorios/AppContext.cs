@@ -3,14 +3,14 @@ using MascotaFeliz.App.Dominio;
 
 namespace MascotaFeliz.App.Persistencia
 {
-    public class AppContext : DbContext
+    public class AppContext:DbContext
     {
         public DbSet<Persona> Personas {get;set;}
+        public DbSet<Dueno> Duenos  {get;set;}
         public DbSet<Veterinario> Veterinarios {get;set;}
-        public DbSet<Dueno> Duenos {get;set;}
-        public DbSet<VisitaPyP> VisitasPyP {get;set;}
-        public DbSet<Historia> Historias {get;set;}
         public DbSet<Mascota> Mascotas {get;set;}
+        public DbSet<Historia> Historias {get;set;}
+        public DbSet<VisitaPyP> VisitasPyP {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,6 +18,8 @@ namespace MascotaFeliz.App.Persistencia
             {
                 optionsBuilder
                 .UseSqlServer("Data Source = MascolaFelizData.mssql.somee.com; Initial Catalog = MascolaFelizData; user id=Ktorres_SQLLogin_1; pwd=l4jvk99z5j");
+                //.UseSqlServer("Data Source =datamilemascota.mssql.somee.com ; Initial Catalog = datamilemascota; user id=MILU7920_SQLLogin_1; pwd=8kvwazhj8o");
+                //.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = MascotaFelizData");
             }
         }
     }

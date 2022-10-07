@@ -1,74 +1,64 @@
- using System;
 using System.Collections.Generic;
-using System.Linq;
 using MascotaFeliz.App.Dominio;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace MascotaFeliz.App.Persistencia
 {
-    public class RepositorioVisitaPyP : IRepositorioVisitaPyP
+    public class RepositorioVisitaPyP:IRepositorioVisitaPyP
     {
-        /// <summary>
-        /// Referencia al contexto de VisitaPyP
-        /// </summary>
         private readonly AppContext _appContext;
-        /// <summary>
-        /// Metodo Constructor Utiiza 
-        /// Inyeccion de dependencias para indicar el contexto a utilizar
-        /// </summary>
-        /// <param name="appContext"></param>//
-        
-        public RepositorioVisitaPyP(AppContext appContext)
+
+        public RepositorioVisitaPyP (AppContext App)
         {
-            _appContext = appContext;
+            _appContext=App;
         }
+
 
         public VisitaPyP AddVisitaPyP(VisitaPyP visitaPyP)
         {
-            var visitaPyPAdicionado = _appContext.VisitasPyP.Add(visitaPyP);
+            var VisitaPyPAgregada= _appContext.VisitasPyP.Add(visitaPyP);
             _appContext.SaveChanges();
-            return visitaPyPAdicionado.Entity;
+            return VisitaPyPAgregada.Entity;
         }
 
-        public void DeleteVisitaPyP(int idVisitaPyP)
+        public void DeleteVisitaPyP(int idvisitapyp)
         {
-            var visitaPyPEncontrado = _appContext.VisitasPyP.FirstOrDefault(d => d.Id == idVisitaPyP);
-            if (visitaPyPEncontrado == null)
-                return;
-            _appContext.VisitasPyP.Remove(visitaPyPEncontrado);
+            var VisitaEncontrada= _appContext.VisitasPyP.FirstOrDefault(v=>v.Id== idvisitapyp);
+            if (VisitaEncontrada!=null)
+            {
+                _appContext.VisitasPyP.Remove(VisitaEncontrada);
+                
+            }
             _appContext.SaveChanges();
         }
 
-       public IEnumerable<VisitaPyP> GetAllVisitasPyP()
+        public IEnumerable<VisitaPyP> GetAllVisitaPyP()
         {
             return _appContext.VisitasPyP;
         }
 
-        public VisitaPyP GetVisitaPyP(int idVisitaPyP)
-        
+        public VisitaPyP GetVisitaPyP(int idvisitapyp)
         {
-            return _appContext.VisitasPyP.FirstOrDefault(d => d.Id == idVisitaPyP);
+            var VisitaPyPEncontrada=_appContext.VisitasPyP.FirstOrDefault(v =>v.Id==idvisitapyp);
+            return VisitaPyPEncontrada;
         }
 
         public VisitaPyP UpdateVisitaPyP(VisitaPyP visitaPyP)
         {
-            var visitaPyPEncontrado = _appContext.VisitasPyP.FirstOrDefault(d => d.Id == visitaPyP.Id);
-            if (visitaPyPEncontrado != null)
+            var VisitaPyPEncontrada=_appContext.VisitasPyP.FirstOrDefault(v =>v.Id==visitaPyP.Id);
+            if (VisitaPyPEncontrada!=null)
             {
-                visitaPyPEncontrado.FechaVisita = visitaPyP.FechaVisita;
-                visitaPyPEncontrado.Temperatura = visitaPyP.Temperatura;
-                visitaPyPEncontrado.Peso = visitaPyP.Peso;
-                visitaPyPEncontrado.FrecuenciaRespiratoria = visitaPyP.FrecuenciaRespiratoria;
-                visitaPyPEncontrado.FrecuenciaCardiaca = visitaPyP.FrecuenciaCardiaca;
-                visitaPyPEncontrado.EstadoAnimo = visitaPyP.EstadoAnimo;
-                visitaPyPEncontrado.IdVeterinario = visitaPyP.IdVeterinario;
-                visitaPyPEncontrado.Recomendaciones = visitaPyP.Recomendaciones;
-
+                VisitaPyPEncontrada.EstadoAnimo=visitaPyP.EstadoAnimo;
+                VisitaPyPEncontrada.FechaVisita=visitaPyP.FechaVisita;
+                VisitaPyPEncontrada.FrecuenciaCardiaca=visitaPyP.FrecuenciaCardiaca;
+                VisitaPyPEncontrada.FrecuenciaRespiratoria=visitaPyP.FrecuenciaRespiratoria;
+                VisitaPyPEncontrada.IdVeterinario=visitaPyP.IdVeterinario;
+                VisitaPyPEncontrada.Peso=visitaPyP.Peso;
+                VisitaPyPEncontrada.Recomendaciones=visitaPyP.Recomendaciones;
+                VisitaPyPEncontrada.Temperatura=visitaPyP.Temperatura;
                 _appContext.SaveChanges();
             }
-            return visitaPyPEncontrado;
-        }     
+            return VisitaPyPEncontrada;
+        }
     }
 }
- 
-    

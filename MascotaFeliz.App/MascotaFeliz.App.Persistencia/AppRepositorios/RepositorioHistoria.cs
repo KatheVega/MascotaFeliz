@@ -1,82 +1,116 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using MascotaFeliz.App.Dominio;
+using System.Linq;
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace MascotaFeliz.App.Persistencia
 {
-   public class RepositorioHistoria : IRepositorioHistoria
+    public class RepositorioHistoria:IRepositorioHistoria
     {
-        /// <summary>
-        /// Referencia al contexto de Dueno
-        /// </summary>
-        private readonly AppContext _appContext;
-        /// <summary>
-        /// Metodo Constructor Utiiza 
-        /// Inyeccion de dependencias para indicar el contexto a utilizar
-        /// </summary>
-        /// <param name="appContext"></param>//
-        public RepositorioHistoria(AppContext appContext)
-        {
-            _appContext = appContext;
-        }
+        private readonly AppContext _appContext ;
 
+        public RepositorioHistoria (AppContext App)
+        {
+            _appContext=App;
+
+        }
+        //--------------------------------------------------------------------------------------------
 
         public Historia AddHistoria(Historia historia)
         {
-            var historiaAdicionado = _appContext.Historias.Add(historia);
+            var AgregarHistoria = _appContext.Historias.Add(historia);
             _appContext.SaveChanges();
-            return historiaAdicionado.Entity;
- }
-        public void DeleteHistoria(int idHistoria)
+            return AgregarHistoria.Entity;
+        }
+
+        public void DeleteHistoria(int idhistoria)
         {
-            var historiaEncontrado = _appContext.Historias.FirstOrDefault(d => d.Id == idHistoria);
-            if (historiaEncontrado == null)
-                return;
-            _appContext.Historias.Remove(historiaEncontrado);
+            var HistoriaEncontrada=_appContext.Historias.FirstOrDefault(h=> h.Id== idhistoria);
+            if (HistoriaEncontrada!=null)
+            {
+                _appContext.Historias.Remove(HistoriaEncontrada);
+            }
             _appContext.SaveChanges();
         }
 
-       public IEnumerable<Historia> GetAllHistorias()
+        public IEnumerable<Historia> GetAllHistoria()
         {
             return _appContext.Historias;
-    /*    }
-    IEnumerable<VisitaPyP> IRepositorioHistoria.GetVisitasHistoria(int idHistoria)
-    {
-        var historia = _appContext.Historias.Where(h => h.Id == idHistoria)
-                                            .Include(h => h.VisitasPyP)
-                                            .FirstOrDefault();
-
-                            return historia.VisitaPyP;*/
-    }
-                                  
-        public Historia GetHistoria(int idHistoria)
-        {
-            return _appContext.Historias.Include(a => a.VisitasPyP).FirstOrDefault(d => d.Id == idHistoria);
+            
         }
 
-
-       
-        
+        public Historia GetHistoria(int idhistoria)
+        {
+            var HistoriaEncontrada=_appContext.Historias
+                                                .Include("VisitasPyP")
+            .                                   FirstOrDefault(h=> h.Id== idhistoria);
+            return HistoriaEncontrada;
+        }
 
         public Historia UpdateHistoria(Historia historia)
         {
-            var historiaEncontrado = _appContext.Historias.FirstOrDefault(d => d.Id == historia.Id);
-            if (historiaEncontrado != null)
+            var HistoriaEncontrada=_appContext.Historias.FirstOrDefault(h=> h.Id== historia.Id);
+            if (HistoriaEncontrada!=null)
             {
-                historiaEncontrado.FechaInicial = historia.FechaInicial;
-                historiaEncontrado.VisitasPyP = historia.VisitasPyP;
+                HistoriaEncontrada.FechaInicial=historia.FechaInicial;
+                HistoriaEncontrada.VisitasPyP=historia.VisitasPyP;
+                
                 
                 _appContext.SaveChanges();
+            }
+            return HistoriaEncontrada;
 
+
+            
+        }
+        public Historia AsignarVisita (Historia historia, VisitaPyP visitaPyP)
+        {
+            if(historia != null)
+            {
+                if (visitaPyP != null)
+                {
+                    if (historia.VisitasPyP == null)
+                    {
+                        historia.VisitasPyP = new List<VisitaPyP>();
+                        historia.VisitasPyP.Add(visitaPyP);
+                        _appContext.SaveChanges();
+
+                    }
+                    else
+                    {
+                         historia.VisitasPyP.Add(visitaPyP);
+                        _appContext.SaveChanges();
+                    }
+                }
+            }
+            return historia;
+           /*  var HistoriaEncontrada=_appContext.Historias.FirstOrDefault(h => h.Id == historia.Id);
+            if (HistoriaEncontrada!=null)
+            {
+                var VisitaPyPEncontrada =_appContext.VisitasPyP.FirstOrDefault(v =>v.Id==visitapyp.Id);
+                if (VisitaPyPEncontrada!=null)
+                {
+                    if (HistoriaEncontrada.VisitasPyP==null)
+                    {
+                        HistoriaEncontrada.VisitasPyP=new List<VisitaPyP>();
+                        HistoriaEncontrada.VisitasPyP.Add(VisitaPyPEncontrada);
+                        _appContext.SaveChanges();
+                    }
+                    else
+                    {
+                        HistoriaEncontrada.VisitasPyP.Add(VisitaPyPEncontrada);
+                        _appContext.SaveChanges();
+
+                    }
+                    
+                
+                   
+
+                } 
 
             }
-            return historiaEncontrado;
+            return  HistoriaEncontrada; */
         }
-
-        
-       
     }
 }
-    

@@ -37,7 +37,7 @@ namespace MascotaFeliz.App.Frontend.Pages
             if (mascotaId.HasValue)
             {
                 mascota = _repoMascota.GetMascota(mascotaId.Value);
-                //mascota = _repoMascota.AsignarDueno(duenoId.Value);
+                //mascota = _repoMascota.AsignarDueno(mascotaId.Value);
                 
             }
             else 
@@ -68,11 +68,11 @@ namespace MascotaFeliz.App.Frontend.Pages
                 {
                     
                     mascota = _repoMascota.AddMascota(mascota);
-                   // _repoMascota.AsignarDueno(mascota.Id,dueno.Id);
-                   // _repoMascota.AsignarVeterinario(mascota.Id,veterinario.Id);
+                    _repoMascota.AsignarDueno(mascota.Id, duenoId);
+                    _repoMascota.AsignarVeterinario(mascota.Id,veterinarioId);
 
                 }
-                return RedirectToPage("/Mascotas/ListaMascotas");
+                return RedirectToPage("/Mascotas/ListarMascotas");
 
             }
             else

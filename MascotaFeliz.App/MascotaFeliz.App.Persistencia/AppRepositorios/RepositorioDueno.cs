@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MascotaFeliz.App.Persistencia
 {
-
     public class RepositorioDueno : IRepositorioDueno
     {
         /// <summary>
@@ -18,18 +17,17 @@ namespace MascotaFeliz.App.Persistencia
         /// Inyeccion de dependencias para indicar el contexto a utilizar
         /// </summary>
         /// <param name="appContext"></param>//
+        
         public RepositorioDueno(AppContext appContext)
         {
             _appContext = appContext;
         }
-
 
         public Dueno AddDueno(Dueno dueno)
         {
             var duenoAdicionado = _appContext.Duenos.Add(dueno);
             _appContext.SaveChanges();
             return duenoAdicionado.Entity;
-
         }
 
         public void DeleteDueno(int idDueno)
@@ -45,7 +43,7 @@ namespace MascotaFeliz.App.Persistencia
         {
             return GetAllDuenos_();
         }
-        
+
         public IEnumerable<Dueno> GetDuenosPorFiltro(string filtro)
         {
             var duenos = GetAllDuenos(); // Obtiene todos los saludos
@@ -55,10 +53,8 @@ namespace MascotaFeliz.App.Persistencia
                 {
                     duenos = duenos.Where(s => s.Nombres.Contains(filtro));
                 }
-
             }
             return duenos;
-
         }
 
         public IEnumerable<Dueno> GetAllDuenos_()
@@ -78,22 +74,12 @@ namespace MascotaFeliz.App.Persistencia
             {
                 duenoEncontrado.Nombres = dueno.Nombres;
                 duenoEncontrado.Apellidos = dueno.Apellidos;
-               
-
                 duenoEncontrado.Direccion = dueno.Direccion;
                 duenoEncontrado.Telefono = dueno.Telefono;
                 duenoEncontrado.Correo = dueno.Correo;
-                
-
-
                 _appContext.SaveChanges();
-
-
             }
             return duenoEncontrado;
-        }
-
-       
-       
+        }     
     }
 }

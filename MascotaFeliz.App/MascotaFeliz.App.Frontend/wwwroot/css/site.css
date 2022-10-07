@@ -97,6 +97,7 @@ body{
   background-color: black;
   background-image: url("../img/huesito.png");
   background-size: cover;
+  height: 100%;
 } 
 
 .body2{
@@ -104,9 +105,26 @@ body{
   background-size: cover;
 }
 
+.contenedor1{
+  width: 500px;
+  height: 500px;
+  margin: 1% 1%;
+  float: left;
+  padding-top: 50px;
+}
+.contenedor2{
+  width: 500px;
+  height: 100px;
+  float: left;
+}
+.container3{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
 .main{
-
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.472), rgba(255, 255, 255, 0.365));
 
 
   animation: mostrar 1.5s ease-in-out;
@@ -225,5 +243,11 @@ body{
 }
 
 .navbar {
-background-color: #c20392;
+background-color: #000000;
+}
+
+.p1{
+  font-size: 2.8rem;
+  color: white;
+  font-style: oblique;
 }

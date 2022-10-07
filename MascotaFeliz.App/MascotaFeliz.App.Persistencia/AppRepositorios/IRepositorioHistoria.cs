@@ -1,23 +1,18 @@
-
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using MascotaFeliz.App.Dominio;
 
 namespace MascotaFeliz.App.Persistencia
 {
     public interface IRepositorioHistoria
     {
-        IEnumerable<Historia> GetAllHistorias();
-        Historia AddHistoria(Historia historia);
-        Historia UpdateHistoria(Historia historia);
-        void DeleteHistoria(int idHistoria);
-        Historia GetHistoria(int idHistoria);
-        //IEnumerable<VisitaPyP> GetVisitasPyPPorFiltro(int filtro);
-                
+        Historia AddHistoria (Historia historia);
+        void DeleteHistoria (int idhistoria);
+        IEnumerable<Historia> GetAllHistoria ();
+        Historia GetHistoria (int idhistoria);
+        Historia UpdateHistoria (Historia historia);
+        Historia AsignarVisita (Historia historia, VisitaPyP visitaPyP);
+        
+        
         
     }
-    
-
 }

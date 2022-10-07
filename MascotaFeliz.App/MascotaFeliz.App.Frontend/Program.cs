@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace MascotaFaeliz.App.Frontend
+namespace MascotaFeliz.App.Frontend
 {
     public class Program
     {

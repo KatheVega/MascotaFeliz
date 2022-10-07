@@ -1,5 +1,6 @@
 using System;
 namespace MascotaFeliz.App.Dominio
+
 {
     public class VisitaPyP
     {
@@ -12,6 +13,7 @@ namespace MascotaFeliz.App.Dominio
         public string EstadoAnimo {get;set;}
         public int IdVeterinario {get;set;}
         public string Recomendaciones {get;set;}
-        
-    }
+
+       
+    }    
 }
